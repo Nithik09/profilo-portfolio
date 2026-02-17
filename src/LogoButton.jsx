@@ -1,3 +1,8 @@
+const asset = (path) => {
+  const cleaned = path.startsWith("/") ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${encodeURI(cleaned)}`;
+};
+
 export default function LogoButton({ onClick, variant = "center" }) {
   const handleClick = (event) => {
     event.preventDefault();
@@ -16,7 +21,7 @@ export default function LogoButton({ onClick, variant = "center" }) {
         aria-label="Go back / Open intro"
       >
         <img
-          src="/dragonlogo.png"
+          src={asset("dragonlogo.png")}
           alt="Dragon logo"
           className="logo-icon"
         />

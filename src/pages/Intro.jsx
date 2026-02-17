@@ -3,6 +3,11 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import LogoButton from "../LogoButton.jsx";
 
+const asset = (path) => {
+  const cleaned = path.startsWith("/") ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${encodeURI(cleaned)}`;
+};
+
 export default function Intro() {
   const navigate = useNavigate();
   const [navTarget, setNavTarget] = useState(null);
@@ -85,7 +90,7 @@ export default function Intro() {
         </div>
         <div className="introRight">
           <div className="avatarFrame">
-            <img src="/ava.png" alt="Avatar" className="avatarImg" />
+            <img src={asset("ava.png")} alt="Avatar" className="avatarImg" />
           </div>
         </div>
       </section>

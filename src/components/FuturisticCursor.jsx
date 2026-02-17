@@ -1,5 +1,10 @@
 import { useEffect, useRef } from "react";
 
+const asset = (path) => {
+  const cleaned = path.startsWith("/") ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${encodeURI(cleaned)}`;
+};
+
 export default function FuturisticCursor() {
   const canvasRef = useRef(null);
   const rafRef = useRef(0);
@@ -184,7 +189,7 @@ export default function FuturisticCursor() {
     <>
       <canvas ref={canvasRef} className="cursor-canvas" aria-hidden="true" />
       <div ref={dragonRef} className="cursor-dragon" aria-hidden="true">
-        <img src="/dg.png" alt="" aria-hidden="true" />
+        <img src={asset("dg.png")} alt="" aria-hidden="true" />
       </div>
     </>
   );

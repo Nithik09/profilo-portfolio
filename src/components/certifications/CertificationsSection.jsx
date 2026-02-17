@@ -76,11 +76,19 @@ const CERTIFICATION_DATA = [
   }
 ];
 
+const asset = (path) => {
+  const cleaned = path.startsWith("/") ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${encodeURI(cleaned)}`;
+};
+
 export default function CertificationsSection() {
   const [activeCertificate, setActiveCertificate] = useState(null);
   const isModalOpen = Boolean(activeCertificate);
 
-  const certifications = useMemo(() => CERTIFICATION_DATA, []);
+  const certifications = useMemo(
+    () => CERTIFICATION_DATA.map((cert) => ({ ...cert, image: asset(cert.image) })),
+    []
+  );
 
   const handleView = (certificate) => {
     setActiveCertificate(certificate);
@@ -105,7 +113,7 @@ export default function CertificationsSection() {
 
         <div className={styles.avatarWrap}>
           <div className={styles.avatarFrame}>
-            <img src="/ava3.png" alt="Portrait" />
+            <img src={asset("ava3.png")} alt="Portrait" />
           </div>
         </div>
 

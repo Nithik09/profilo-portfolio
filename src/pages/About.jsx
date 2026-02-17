@@ -1,6 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const asset = (path) => {
+  const cleaned = path.startsWith("/") ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${encodeURI(cleaned)}`;
+};
+
 export default function About() {
   const navigate = useNavigate();
 
@@ -73,7 +78,7 @@ export default function About() {
         </section>
 
         <aside className="about-avatar">
-          <img src="/ava2.png" alt="Avatar" />
+          <img src={asset("ava2.png")} alt="Avatar" />
         </aside>
       </main>
 
