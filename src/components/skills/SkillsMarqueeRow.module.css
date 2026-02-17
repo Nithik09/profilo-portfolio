@@ -1,0 +1,211 @@
+.row {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  .row {
+    display: grid;
+    gap: 18px;
+    justify-items: center;
+  }
+
+  .title {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(190, 185, 255, 0.92);
+  }
+
+  .marquee {
+    position: relative;
+    overflow: hidden;
+    padding: 6px 0 12px;
+    max-width: min(1200px, 94vw);
+    width: 100%;
+    margin: 0 auto;
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0), #000 12%, #000 88%, rgba(0, 0, 0, 0));
+  }
+
+  .track {
+    display: flex;
+    gap: clamp(12px, 2vw, 18px);
+    width: max-content;
+    animation: marquee var(--duration, 18s) linear infinite;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: 44px auto;
+    align-items: center;
+    gap: 12px;
+    padding: clamp(12px, 2vw, 16px) clamp(16px, 2.8vw, 20px);
+    background: linear-gradient(135deg, rgba(23, 53, 125, 0.96), rgba(13, 28, 86, 0.92));
+    border-radius: 14px;
+    border: 1px solid rgba(90, 120, 255, 0.25);
+    box-shadow: 0 10px 25px rgba(5, 10, 30, 0.5);
+    min-width: 180px;
+  }
+
+  .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(27, 90, 190, 0.9), rgba(19, 32, 80, 0.9));
+    display: grid;
+    place-items: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(232, 236, 255, 0.95);
+    letter-spacing: 0.08em;
+    overflow: hidden;
+  }
+
+  .icon img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgba(234, 238, 255, 0.95);
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .marquee {
+      max-width: 100%;
+      mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0), #000 18%, #000 82%, rgba(0, 0, 0, 0));
+    }
+
+    .track {
+      gap: 12px;
+    }
+
+    .card {
+      grid-template-columns: 40px auto;
+      min-width: 150px;
+      padding: 12px 14px;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .name {
+      font-size: 0.92rem;
+    }
+  }
+  color: rgba(220, 227, 255, 0.85);
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0), #000 12%, #000 88%, rgba(0, 0, 0, 0));
+}
+
+.track {
+  display: flex;
+  gap: clamp(12px, 2vw, 20px);
+  animation: marquee var(--duration, 18s) linear infinite;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+.reverse .track {
+  animation-direction: reverse;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 48px auto;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(12px, 2vw, 16px) clamp(18px, 3vw, 24px);
+  background: linear-gradient(135deg, rgba(81, 113, 255, 0.18), rgba(103, 35, 173, 0.28));
+  border-radius: 18px;
+  border: 1px solid rgba(118, 144, 255, 0.35);
+  box-shadow: 0 12px 35px rgba(34, 40, 74, 0.35);
+  backdrop-filter: blur(8px);
+  min-width: clamp(200px, 32vw, 280px);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.28), rgba(70, 95, 255, 0.32));
+  display: grid;
+  place-items: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(229, 233, 255, 0.92);
+  letter-spacing: 0.12em;
+  overflow: hidden;
+}
+
+.icon img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  display: block;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(238, 242, 255, 0.92);
+  white-space: nowrap;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    grid-template-columns: 42px auto;
+    min-width: clamp(170px, 60vw, 220px);
+  }
+
+  .icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .name {
+    font-size: 0.9rem;
+  }
+}
