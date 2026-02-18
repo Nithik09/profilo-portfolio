@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import SkillsMarqueeRow from "./SkillsMarqueeRow";
 import styles from "./SkillsSection.module.css";
 
@@ -83,11 +84,27 @@ const skillRows = [
 ];
 
 export default function SkillsSection() {
+  const asset = (path) => {
+    const cleaned = path.startsWith("/") ? path.slice(1) : path;
+    return `${import.meta.env.BASE_URL}${encodeURI(cleaned)}`;
+  };
+
+  const rows = useMemo(
+    () =>
+      skillRows.map((row) => ({
+        ...row,
+        skills: row.skills.map((skill) =>
+          typeof skill === "string" ? skill : { ...skill, icon: asset(skill.icon) }
+        ),
+      })),
+    []
+  );
+
   return (
     <section className={styles.section} id="skills">
       <div className={styles.overlay} aria-hidden="true" />
       <div className={styles.rows}>
-        {skillRows.map((config) => (
+        {rows.map((config) => (
           <SkillsMarqueeRow
             key={config.title}
             title={config.title}
