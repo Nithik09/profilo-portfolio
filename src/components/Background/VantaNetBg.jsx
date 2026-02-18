@@ -25,8 +25,8 @@ export default function VantaNetBg() {
         minWidth: 200.0,
         scale: 1.0,
         scaleMobile: 1.0,
-        color: 0x9b9b9b, // subtle grey lines/points
-        backgroundColor: 0xf6f1eb, // light beige background
+        color: 0xded8cf, // light lines/nodes to match screenshot background
+        backgroundColor: 0xfaf7f2, // light canvas behind the mesh
         points: 12.0,
         maxDistance: 18.0,
         spacing: 16.0,

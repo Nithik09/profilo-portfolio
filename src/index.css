@@ -108,15 +108,15 @@ body {
   font-family: "Inter", "Poppins", sans-serif;
   cursor: pointer;
   position: relative;
-  z-index: 21;
-  transition: transform 0.15s ease, background 0.2s ease;
-
   z-index: -1;
   background: transparent;
+  transition: transform 0.15s ease, background 0.2s ease;
 }
-  background: rgba(29, 28, 26, 0.08);
-  transform: scale(1.05);
 body.projects-mesh .projects-page {
+  background: transparent;
+}
+
+body.projects-mesh {
   background: transparent;
 }
 
@@ -161,7 +161,9 @@ body.projects-mesh .projects-page {
 
 /* Landing layout adjustments */
 .landing .centerpiece {
-  padding-top: 40px;
+  padding-top: 0;
+  min-height: 100vh;
+  justify-content: center;
 }
 
 .back-button {
@@ -191,12 +193,12 @@ body.projects-mesh .projects-page {
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 64px;
-  font-size: 32px;
-  letter-spacing: 0.14em;
-  font-weight: 800;
+  gap: 36px;
+  font-size: 18px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
   text-transform: uppercase;
-  color: rgba(15, 14, 13, 0.92);
+  color: rgba(29, 28, 26, 0.7);
   writing-mode: vertical-rl;
   text-orientation: upright;
   align-items: center;
@@ -210,14 +212,21 @@ body.projects-mesh .projects-page {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 22px 32px;
-  border-radius: 16px;
-  background: rgba(255, 253, 248, 0.92);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  padding: 8px 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: color 0.2s ease, transform 0.15s ease;
   font-family: "Inter", "Poppins", sans-serif;
   position: relative;
   cursor: pointer;
+}
+
+.side-text a:hover,
+.side-text a:focus-visible {
+  color: rgba(0, 0, 0, 0.88);
+  transform: translateY(-2px);
+  outline: none;
 }
 
 .side-text a:visited {
@@ -760,7 +769,7 @@ body.projects-mesh .projects-page {
 }
 
 .projects-page {
-  background: #faf7f2;
+  background: transparent;
   color: #1d1c1a;
   display: flex;
   flex-direction: column;
@@ -927,6 +936,17 @@ body.projects-mesh .projects-page {
   min-height: 460px;
   transform-style: preserve-3d;
   transition: transform 0.7s ease;
+
+.project-card-media.project-image-placeholder::after,
+.project-card-media[data-placeholder]:not(:has(img[style*="display: none"]))::after {
+  content: attr(data-placeholder);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding: 12px 18px;
+  line-height: 1.4;
+}
 }
 
 .project-card:hover .project-card-inner,
@@ -1214,6 +1234,12 @@ body.projects-mesh .projects-page {
 }
 .intro {
   background: linear-gradient(90deg, #000000 0 50%, #faf7f2 50% 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 96px 18px 120px;
 }
 
 .intro-header {
@@ -1283,6 +1309,7 @@ body.projects-mesh .projects-page {
   align-items: stretch;
   z-index: 1;
   position: relative;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
 }
 
 .intro-text {
@@ -1320,17 +1347,17 @@ body.projects-mesh .projects-page {
 .introRight {
   flex: 1;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   background: #f6f1ef;
-  padding: 24px 0 0;
+  padding: 32px 0 32px;
 }
 
 .avatarFrame {
   width: min(420px, 100%);
   height: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   overflow: hidden;
   background: #f6f1ef;
@@ -1340,7 +1367,7 @@ body.projects-mesh .projects-page {
   width: 300px;
   height: auto;
   object-fit: contain;
-  transform: translateY(-24px);
+  transform: translateY(0);
 }
 
 .intro-bottom-text {
@@ -1378,31 +1405,71 @@ body.projects-mesh .projects-page {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0;
+  justify-content: center;
+  gap: 6px;
   text-decoration: none;
   z-index: 2001;
-  padding: 8px 12px;
+  font-family: "Inter", "Poppins", sans-serif;
+  font-size: clamp(18px, 2.8vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  padding: clamp(14px, 2.6vw, 22px) clamp(16px, 2.8vw, 24px);
+  min-height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
   pointer-events: auto;
+  background: transparent;
+  color: #ffffff;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.intro-education-center.intro-nav-active {
+  color: #1d1c1a;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  transform: scale(1.05);
 }
 
 .intro-about {
   color: #ffffff;
   text-decoration: none;
-  padding: 8px 12px;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", "Poppins", sans-serif;
+  font-size: clamp(18px, 2.8vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  padding: clamp(14px, 2.6vw, 22px) clamp(16px, 2.8vw, 24px);
+  min-height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
   pointer-events: auto;
+  background: transparent;
+  transition: color 0.2s ease, transform 0.15s ease;
 }
 
 .intro-skills {
-  color: #1d1c1a;
+  color: rgba(29, 28, 26, 0.7);
   text-decoration: none;
   position: relative;
   z-index: 2002;
-  padding: 8px 12px;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", "Poppins", sans-serif;
+  font-size: clamp(18px, 2.8vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  padding: clamp(14px, 2.6vw, 22px) clamp(16px, 2.8vw, 24px);
+  min-height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
   pointer-events: auto;
+  background: transparent;
+  transition: color 0.2s ease, transform 0.15s ease;
 }
 
 @media (max-width: 720px) {
@@ -1436,6 +1503,15 @@ body.projects-mesh .projects-page {
   color: #ffffff;
   gap: 14px;
   width: auto;
+}
+
+.intro .socials a,
+.intro .intro-socials a,
+.intro .socials i,
+.intro .intro-socials i,
+.intro .socials .fa-brands,
+.intro .intro-socials .fa-brands {
+  color: #ffffff;
 }
 
 .social-line {
@@ -1673,13 +1749,47 @@ body.projects-mesh .projects-page {
   color: rgba(10, 9, 9, 0.95);
 }
 
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
+}
+
+.socials a:hover,
+.socials a:focus-visible,
+.socials a:active {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0a0909;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  outline: none;
+  transform: scale(0.97);
+}
+
+.intro .socials a:hover,
+.intro .socials a:focus-visible,
+.intro .socials a:active,
+.intro .intro-socials a:hover,
+.intro .intro-socials a:focus-visible,
+.intro .intro-socials a:active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+  transform: scale(0.97);
+}
+
 .intro .socials,
 .intro .intro-socials {
   color: #ffffff;
 }
 
 .intro .social-line {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .footer-center {
@@ -1695,24 +1805,36 @@ body.projects-mesh .projects-page {
   color: inherit;
   text-decoration: none;
   font-family: "Inter", "Poppins", sans-serif;
-  padding: 16px 22px;
-  border-radius: 16px;
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 2.4vw, 22px) clamp(16px, 2.6vw, 24px);
+  min-height: 44px;
+  border-radius: 14px;
   cursor: pointer;
   position: relative;
-  z-index: 12;
+  z-index: 120;
   transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Footer nav overrides to guarantee font/size/padding win */
 .landing .footer .footer-center .footer-link {
   font-family: "Inter", "Poppins", sans-serif;
-  font-size: 28px;
+  font-size: clamp(18px, 2.2vw, 22px);
   font-weight: 800;
   letter-spacing: 0.14em;
-  padding: 18px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 2.4vw, 22px) clamp(16px, 2.6vw, 24px);
+  min-height: 44px;
+  border-radius: 14px;
   cursor: pointer;
   position: relative;
-  z-index: 50;
+  z-index: 140;
 }
 
 .intro-about:hover,
@@ -1720,9 +1842,27 @@ body.projects-mesh .projects-page {
 .footer-link:hover,
 .footer-link:focus-visible {
   text-decoration: none;
-  background: rgba(29, 28, 26, 0.06);
+  background: transparent;
   transform: scale(1.05);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  outline: none;
+  color: #ffffff;
+}
+
+.intro-about:hover,
+.intro-about:focus-visible {
+  transform: scale(1.08);
+}
+
+.intro-education-center:hover,
+.intro-education-center:focus-visible,
+.intro-skills:hover,
+.intro-skills:focus-visible {
+  background: transparent;
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: none;
+  outline: none;
 }
 
 .footer-spacer {

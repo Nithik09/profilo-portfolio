@@ -106,8 +106,9 @@ export default function Intro() {
           </Link>
         </div>
         <Link
-          className="intro-education-center"
+          className={`intro-education-center${navTarget === "/education" ? " intro-nav-active" : ""}`}
           to="/education"
+          onClick={(e) => handleNav(e, "/education")}
         >
           <span className="intro-education-left">Educ</span>
           <span className="intro-education-right">ation</span>

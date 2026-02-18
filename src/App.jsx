@@ -13,9 +13,8 @@ import FuturisticCursor from "./components/FuturisticCursor.jsx";
 export default function App() {
   const location = useLocation();
 
-  const pathname = location.pathname;
-  const smokeEnabled = pathname === "/" || pathname === "/intro";
-  const dragonEnabled = false;
+  const smokeEnabled = true;
+  const dragonEnabled = true;
 
   return (
     <>

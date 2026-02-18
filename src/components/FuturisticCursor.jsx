@@ -139,7 +139,7 @@ export default function FuturisticCursor({ enableSmoke = true, enableDragon = tr
 
       if (!reduceMotion.current) {
         ctx.globalCompositeOperation = "source-over";
-        ctx.fillStyle = "rgba(0,0,0,0.08)";
+        ctx.fillStyle = "rgba(0,0,0,0.04)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         const baseRadius = 120;
@@ -150,9 +150,9 @@ export default function FuturisticCursor({ enableSmoke = true, enableDragon = tr
 
         if (activity > 0.02) {
           const gradient = ctx.createRadialGradient(px, py, 0, px, py, baseRadius);
-          gradient.addColorStop(0, `rgba(${cr}, ${cg}, ${cb}, ${0.34 * pulse * activity})`);
-          gradient.addColorStop(0.3, `rgba(${cr}, ${cg}, ${cb}, ${0.26 * pulse * activity})`);
-          gradient.addColorStop(0.7, `rgba(${cr}, ${cg}, ${cb}, ${0.12 * pulse * activity})`);
+          gradient.addColorStop(0, `rgba(${cr}, ${cg}, ${cb}, ${0.18 * pulse * activity})`);
+          gradient.addColorStop(0.3, `rgba(${cr}, ${cg}, ${cb}, ${0.14 * pulse * activity})`);
+          gradient.addColorStop(0.7, `rgba(${cr}, ${cg}, ${cb}, ${0.08 * pulse * activity})`);
           gradient.addColorStop(1, `rgba(${cr}, ${cg}, ${cb}, 0)`);
 
           ctx.fillStyle = gradient;
@@ -168,7 +168,7 @@ export default function FuturisticCursor({ enableSmoke = true, enableDragon = tr
             const g2 = ctx.createRadialGradient(gx, gy, 0, gx, gy, r);
             const hue2 = (hueRef.current + 30 + i * 25) % 360;
             const { r: r2, g: g2c, b: b2 } = hsvToRgb(hue2, 0.9, 1);
-            g2.addColorStop(0, `rgba(${r2}, ${g2c}, ${b2}, ${0.18 * pulse * activity})`);
+            g2.addColorStop(0, `rgba(${r2}, ${g2c}, ${b2}, ${0.1 * pulse * activity})`);
             g2.addColorStop(1, `rgba(${r2}, ${g2c}, ${b2}, 0)`);
             ctx.fillStyle = g2;
             ctx.beginPath();

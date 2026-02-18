@@ -3,12 +3,17 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import VantaNetBg from "../components/Background/VantaNetBg.jsx";
 
+const asset = (path) => {
+  const cleaned = path.startsWith("/") ? path.slice(1) : path;
+  return `${import.meta.env.BASE_URL}${cleaned}`;
+};
+
 const projects = [
   {
     title: "AI Helpdesk Automation (RAG + n8n)",
     description:
       "Description: End-to-end AI-powered helpdesk system that validates users, retrieves knowledge using RAG (Qdrant + embeddings), and generates grounded LLM responses with citations. Includes ticket creation, escalation workflows, and PostgreSQL logging.",
-    image: "/projects/p1.png",
+    image: asset("projects/p1.png"),
     link: "https://github.com/Nithik09/ai-helpdesk-chatbot.git",
     tags: ["#RAG", "#Qdrant", "#LLM", "#n8n"],
   },
@@ -16,7 +21,7 @@ const projects = [
     title: "AI Credit Risk Decision Engine",
     description:
       "Built a production-grade AI credit risk decision engine that delivers calibrated default probability, risk tiers, and explainable underwriting signals via a FastAPI backend and Next.js frontend.",
-    image: "/projects/p2.png",
+    image: asset("projects/p2.png"),
     link: "https://github.com/Nithik09/ai-credit-risk-decision-engine.git",
     tags: [
       "#CreditRisk",
@@ -35,7 +40,7 @@ const projects = [
     title: "AI Engineer Portfolio Platform",
     description:
       "Designed and built a modular, animated AI engineer portfolio with infinite skill loops, custom UI components, and production-ready project architecture.",
-    image: "/projects/p3.png",
+    image: asset("projects/p3.png"),
     link: "https://github.com/Nithik09/profilo-portfolio.git",
     tags: [
       "#NextJS",
@@ -51,7 +56,7 @@ const projects = [
     title: "IntelliOps AI",
     description:
       "An enterprise AI decision intelligence platform designed to accelerate analytics, forecasting, and operational optimization through predictive modeling and natural language insights.",
-    image: "/projects/p4.png",
+    image: asset("projects/p4.png"),
     link: "https://github.com/AutomationRabbit/automationrabbit/blob/master/content/introducing-acme-ai.mdx",
     tags: [
       "#RAG",
@@ -68,7 +73,7 @@ const projects = [
     title: "LeadFlow AI - Intelligent Outreach Automation",
     description:
       "An AI-powered outreach automation system designed to generate personalized cold emails, manage prospect workflows, and automate follow-ups using LLM-driven content generation and pipeline logic.",
-    image: "/projects/p5.png",
+    image: asset("projects/p5.png"),
     link: "https://github.com/Nithik09/LeadFlow-AI---Intelligent-Outreach-Automation.git",
     tags: [
       "#LLM",
@@ -85,26 +90,27 @@ const projects = [
     title: "Distributed Job Orchestration Engine",
     description:
       "Engineered a distributed task orchestration engine capable of scheduling and executing thousands of parallel compute jobs.",
-    image: "/projects/p6.png",
+    image: asset("projects/p6.png"),
     link: "https://github.com/Nithik09/Distributed-Job-Orchestration-Engine.git",
     tags: [
-      "#SecurityEngineering",
-      "#Authentication",
-      "#Authorization",
-      "#RBAC",
-      "#OAuth",
-      "#JWT",
-      "#ZeroTrust",
-      "#BackendSystems",
-      "#EnterpriseSoftware",
+      "#CloudNative",
+      "#DistributedSystems",
+      "#Resilience",
+      "#LoadBalancing",
+      "#Observability",
+      "#Docker",
+      "#Kubernetes",
+      "#Automation",
+      "#Scalability",
       "#SystemArchitecture",
     ],
+    placeholderAlt: "Distributed orchestration schematic",
   },
   {
     title: "Secure Identity & Access Platform",
     description:
       "Designed a role-based authentication and authorization system with JWT, OAuth, and multi-tenant access control.",
-    image: "/projects/p7.png",
+    image: asset("projects/p7.png"),
     link: "https://github.com/Nithik09/Secure-Identity-Access-Platform.git",
     tags: [
       "#CloudNative",
@@ -125,6 +131,16 @@ export default function Projects() {
   const navigate = useNavigate();
   const rowRef = useRef(null);
   const [activeTitle, setActiveTitle] = useState(projects[0]?.title ?? "");
+
+  const handleImgError = (event) => {
+    const img = event.currentTarget;
+    img.style.display = "none";
+    const media = img.closest(".project-card-media");
+    if (media) {
+      media.classList.add("project-image-placeholder");
+      media.setAttribute("data-placeholder", img.alt || "Project image placeholder");
+    }
+  };
 
   useEffect(() => {
     document.body.classList.add("projects-mesh");
@@ -267,7 +283,11 @@ export default function Projects() {
                 <div className="project-card-face project-card-back">
                   <div className="project-card-media">
                     {project.image ? (
-                      <img src={project.image} alt={project.title} />
+                      <img
+                        src={project.image}
+                        alt={project.placeholderAlt || project.title}
+                        onError={handleImgError}
+                      />
                     ) : (
                       <div className="project-image-placeholder" aria-hidden="true" />
                     )}
