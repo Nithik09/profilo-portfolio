@@ -15,6 +15,7 @@ export default function FuturisticCursor({ enableSmoke = true, enableDragon = tr
   const dragonRef = useRef(null);
   const hueRef = useRef(0);
   const lastMoveRef = useRef(performance.now());
+  const dimRef = useRef(false);
 
   const hsvToRgb = (h, s, v) => {
     const c = v * s;
@@ -93,6 +94,8 @@ export default function FuturisticCursor({ enableSmoke = true, enableDragon = tr
       targetRef.current.x = event.clientX;
       targetRef.current.y = event.clientY;
       lastMoveRef.current = performance.now();
+      const el = event.target;
+      dimRef.current = Boolean(el && (el.closest?.(".socials a") || el.closest?.(".socials")));
     };
 
     const handleTouch = (event) => {
@@ -101,6 +104,8 @@ export default function FuturisticCursor({ enableSmoke = true, enableDragon = tr
       targetRef.current.x = t.clientX;
       targetRef.current.y = t.clientY;
       lastMoveRef.current = performance.now();
+      const el = event.target;
+      dimRef.current = Boolean(el && (el.closest?.(".socials a") || el.closest?.(".socials")));
     };
 
     window.addEventListener("mousemove", handleMove, { passive: true });
@@ -124,7 +129,8 @@ export default function FuturisticCursor({ enableSmoke = true, enableDragon = tr
       pointer.y += (target.y - pointer.y) * 0.18;
 
       const idleMs = now - lastMoveRef.current;
-      const activity = Math.max(0, Math.min(1, 1 - idleMs / 900));
+      let activity = Math.max(0, Math.min(1, 1 - idleMs / 900));
+      if (dimRef.current) activity *= 0.22;
 
       if (dragonRef.current) {
         dragonRef.current.style.transform = `translate(${target.x}px, ${target.y}px)`;
