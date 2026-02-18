@@ -178,11 +178,11 @@ body.projects-mesh .projects-page {
   display: flex;
   flex-direction: column;
   gap: 56px;
-  font-size: 16px;
-  letter-spacing: 0.28em;
-  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.18em;
+  font-weight: 800;
   text-transform: uppercase;
-  color: rgba(29, 28, 26, 0.8);
+  color: rgba(15, 14, 13, 0.92);
   writing-mode: vertical-rl;
   text-orientation: upright;
   align-items: center;
@@ -195,11 +195,11 @@ body.projects-mesh .projects-page {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 8px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
 .side-text a:visited {
@@ -210,7 +210,8 @@ body.projects-mesh .projects-page {
 .side-text a:focus-visible {
   color: #0f0e0d;
   background: #fff4e6;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px) scale(1.02);
 }
 
 .side-text-left {
@@ -1558,6 +1559,26 @@ body.projects-mesh .projects-page {
 }
 
 @media (max-width: 980px) {
+  .side-text {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 32px;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    padding: 12px 20px;
+    font-size: 20px;
+    letter-spacing: 0.12em;
+  }
+
+  .side-text a,
+  .side-text span {
+    background: rgba(255, 253, 248, 0.96);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
   .about-content {
     grid-template-columns: 1fr;
     width: min(700px, 94vw);
