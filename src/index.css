@@ -1703,6 +1703,18 @@ body.projects-mesh .projects-page {
   transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Footer nav overrides to guarantee font/size/padding win */
+.landing .footer .footer-center .footer-link {
+  font-family: "Inter", "Poppins", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 18px 24px;
+  cursor: pointer;
+  position: relative;
+  z-index: 50;
+}
+
 .intro-about:hover,
 .intro-about:focus-visible,
 .footer-link:hover,
