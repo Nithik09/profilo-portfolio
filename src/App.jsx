@@ -15,7 +15,7 @@ export default function App() {
 
   const pathname = location.pathname;
   const smokeEnabled = pathname === "/" || pathname === "/intro";
-  const dragonEnabled = ["/about", "/experience", "/certificates", "/projects"].includes(pathname) || smokeEnabled;
+  const dragonEnabled = false;
 
   return (
     <>
