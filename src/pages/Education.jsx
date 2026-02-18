@@ -52,7 +52,7 @@ export default function Education() {
             href="https://www.linkedin.com/in/nithik-roshan-devarajraj-8783192aa"
             aria-label="LinkedIn"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <i className="fa-brands fa-linkedin-in" aria-hidden="true" />
           </a>
@@ -60,7 +60,7 @@ export default function Education() {
             href="https://github.com/Nithik09"
             aria-label="GitHub"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <i className="fa-brands fa-github" aria-hidden="true" />
           </a>
@@ -68,7 +68,7 @@ export default function Education() {
             href="https://www.instagram.com/roshan7.1?igsh=dW55bmRhY2Q2eHJw"
             aria-label="Instagram"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <i className="fa-brands fa-instagram" aria-hidden="true" />
           </a>
