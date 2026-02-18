@@ -27,16 +27,17 @@ body {
   background: #faf7f2;
   overflow-x: hidden;
   overflow-y: auto;
-  cursor: none;
+  cursor: auto;
   position: relative;
 }
 
-a,
-button,
-input,
-textarea,
-select,
-label {
+.hide-system-cursor,
+.hide-system-cursor a,
+.hide-system-cursor button,
+.hide-system-cursor input,
+.hide-system-cursor textarea,
+.hide-system-cursor select,
+.hide-system-cursor label {
   cursor: none;
 }
 

@@ -5,7 +5,7 @@ const asset = (path) => {
   return `${import.meta.env.BASE_URL}${encodeURI(cleaned)}`;
 };
 
-export default function FuturisticCursor() {
+export default function FuturisticCursor({ enableSmoke = true, enableDragon = true }) {
   const canvasRef = useRef(null);
   const rafRef = useRef(0);
   const targetRef = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
@@ -71,6 +71,7 @@ export default function FuturisticCursor() {
   }, []);
 
   useEffect(() => {
+    if (!enableSmoke) return undefined;
     const canvas = canvasRef.current;
     if (!canvas) return undefined;
     const ctx = canvas.getContext("2d");
@@ -183,14 +184,29 @@ export default function FuturisticCursor() {
       window.removeEventListener("touchstart", handleTouch);
       window.cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [enableSmoke]);
+
+  useEffect(() => {
+    const body = document.body;
+    if (!body) return undefined;
+    if (enableSmoke) {
+      body.classList.add("hide-system-cursor");
+    } else {
+      body.classList.remove("hide-system-cursor");
+    }
+    return () => {
+      body.classList.remove("hide-system-cursor");
+    };
+  }, [enableSmoke]);
 
   return (
     <>
-      <canvas ref={canvasRef} className="cursor-canvas" aria-hidden="true" />
-      <div ref={dragonRef} className="cursor-dragon" aria-hidden="true">
-        <img src={asset("dg.png")} alt="" aria-hidden="true" />
-      </div>
+      {enableSmoke && <canvas ref={canvasRef} className="cursor-canvas" aria-hidden="true" />}
+      {enableDragon && (
+        <div ref={dragonRef} className="cursor-dragon" aria-hidden="true">
+          <img src={asset("dg.png")} alt="" aria-hidden="true" />
+        </div>
+      )}
     </>
   );
 }
